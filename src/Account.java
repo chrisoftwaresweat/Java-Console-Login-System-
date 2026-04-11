@@ -1,29 +1,64 @@
+import java.io.Console;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Account {
-    String ogUser, ogPass; //global var. for login validation
+    private final Console console = System.console();
+    
+    String ogUser; //global var. for login validation
+    char[] ogPass; // Replaced with char[] for more secured password reading - Charles Tinoy
 
     //sign up
     public void createAcc(Scanner scanner){
-        String confirmPass;
+        if (console == null) {
+            Main.displayBorder(10, "ERROR");
+            System.out.println("No console available... Run this in a real terminal.");
+            return;
+        }
 
-        System.out.println("SIGN UP");
+        char[] confirmPass;
+
+        Main.displayBorder(10, "SIGN UP");
 
         //username input
         System.out.print("Create a username: ");
+        scanner.nextLine(); // This prevents from skipping the inputs automatically - Charles Tinoy
         ogUser = scanner.nextLine();
+        System.out.println();
 
+        /**
+         * Changes from Charles Tinoy (Same ra ang logic don't worry ;D)
+         * 1. Instead na mag gamit ug while loop for both password and pasasword confirmation, gi separate nako.
+         *
+         * 2. Using "console.readPassword()" instead of a nextLine from scanner
+         *      Kay aron mas secure ang safe ang imohang application.
+         */
         //password input and validation
-        do{
-            System.out.print("Create a password: "); ogPass = scanner.nextLine();
-            System.out.print("Confirm your password: "); confirmPass = scanner.nextLine();
+        ogPass = console.readPassword("Create a password: ");
 
-            if (!ogPass.equals(confirmPass)) System.out.println("\nPassword didn't match. Try again\n");
-            else if (ogPass.length()<6) System.out.println("\nPassword too weak. Minimum of 6 characters\n");
-            else System.out.println("\nAccount created successfully\n");
+        // ========== PASSWORD CREATION ==========
+        while (ogPass.length < 6) {
+            Arrays.fill(ogPass, ' ');
+            Main.displayBorder(10, "Password Error: Try again.");
+            System.out.println("Password too weak. Minimum of 6 characters");
+            ogPass = console.readPassword("Create a password: ");
+        }
 
-        }while(!ogPass.equals(confirmPass) || ogPass.length()<6);
+        // ========== PASSWORD CONFIRMATION ==========
+        confirmPass = console.readPassword("Confirm your password: ");
+        while (!Arrays.equals(ogPass, confirmPass)) {
+            Arrays.fill(confirmPass, ' ');
+            Main.displayBorder(10, "Password Confirmation Error: Try again.");
+            System.out.println("Password didn't match. Try again");
+            confirmPass = console.readPassword("Confirm your password: ");
+        }
 
+        System.out.println("Success: Account created successfully!\n");
+
+        // ========== E CLEAR ANG CACHE SA "console.readPassword()" (Aron dli ma hack) >:( ==========
+        Arrays.fill(ogPass, ' ');
+        Arrays.fill(confirmPass, ' ');
     }
 
     //sign in
@@ -31,7 +66,7 @@ public class Account {
         String user, pass;
         int attempt = 0;
 
-        System.out.println("SIGN IN");
+        Main.displayBorder(10, "SIGN IN");
 
         //log in, and recheck acc info
         do {

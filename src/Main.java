@@ -18,9 +18,9 @@ public class Main {
 
     private static void displayOptions() {
         displayBorder(10, "Options");
-        System.out.println("SIGN UP\t\t\t[1]");
-        System.out.println("SIGN IN\t\t\t[2]");
-        System.out.println("EXIT\t\t\t[3]");
+        System.out.println("SIGN UP\t\t[1]");
+        System.out.println("SIGN IN\t\t[2]");
+        System.out.println("EXIT\t\t[3]");
         displayBorder(10, "Options");
     }
 
