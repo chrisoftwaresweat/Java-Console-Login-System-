@@ -1,11 +1,10 @@
 import java.io.Console;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Account {
     private final Console console = System.console();
-    
+
     String ogUser; //global var. for login validation
     char[] ogPass; // Replaced with char[] for more secured password reading - Charles Tinoy
 
