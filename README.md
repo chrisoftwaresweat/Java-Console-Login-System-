@@ -1,76 +1,162 @@
-# 🔐 Java Account System (Sign Up & Login)
+# 🔐 Java Account System (Secure File-Based Authentication)
 
-## 📌 Description
-This program is a simple **account system in Java** that allows a user to:
-- Create an account (Sign Up)
-- Log in using the created credentials (Sign In)
-
-It demonstrates basic user authentication using **input validation and loops**.
-
----
-
-## 🎯 Features
-- User **sign-up system**
-- Password confirmation check
-- Password strength validation (minimum 6 characters)
-- User **login system**
-- Username and password verification
-- Limits login attempts to **3 tries**
-- Displays a welcome message upon successful login
+![Java](https://img.shields.io/badge/Language-Java-orange)
+![Status](https://img.shields.io/badge/Status-Active-success)
+![Level](https://img.shields.io/badge/Level-Beginner--Intermediate-blue)
+![Storage](https://img.shields.io/badge/Storage-File%20Based-lightgrey)
+![Security](https://img.shields.io/badge/Security-Basic%20Practices-yellow)
 
 ---
 
-## 🧠 Concepts Used
-- Classes and Objects
-- Methods
-- Loops (do-while)
-- Conditional statements (if-else)
-- String comparison (`equals`)
-- User input (`Scanner`)
-- Basic authentication logic
+## 📌 Overview
+A **secure console-based authentication system in Java** that supports account creation and login with **persistent storage and improved security practices**.
+
+This project evolves from a simple login system into a **modular, file-backed authentication system**, demonstrating real-world programming concepts.
 
 ---
 
-## ▶️ Program Flow
-1. User creates an account:
-   - Inputs username
-   - Inputs password
-   - Confirms password
-   - Repeats until valid
-2. User logs in:
-   - Inputs username and password
-   - Program checks credentials
-   - Allows up to 3 attempts
-3. If successful:
-   - Displays welcome message
-4. If failed:
-   - Access is denied after 3 attempts
+## ✨ Features
+- 🔐 Secure password input using `Console.readPassword()`
+- 🧠 Passwords stored as `char[]` (not `String`)
+- ♻️ Sensitive data cleared using `Arrays.fill()`
+- 👤 Username uniqueness validation
+- 🔑 Login authentication system
+- 🚫 Maximum of 3 login attempts
+- 🧾 Persistent storage using `database.bin`
+- 📂 Object serialization for saving users
+- 🔄 Automatic database initialization
+- 🧹 Console clearing for better user experience
+- 🧱 Clean OOP structure (separated concerns)
 
 ---
 
-## 💡 Key Learning
-- Always validate user input
-- Use loops for repeated attempts
-- Use `.equals()` for comparing strings
-- Store user data for authentication
-- Limit login attempts for security
+## 🖥️ Demo (Sample Flow)
+```bash
+===== Options =====
+SIGN UP        [1]
+SIGN IN        [2]
+EXIT           [3]
+===== Options =====
+
+Option: 1
+
+===== SIGN UP =====
+Create a username: chrisoft
+Create a password: ******
+Confirm your password: ******
+
+Success: Account created successfully!
+```
 
 ---
 
-## ⚠️ Note
-- This is a **basic console-based system**
-- Data is not saved permanently (resets every run)
-- For real applications, use databases and encryption
+## 🗂️ Project Structure
+```
+📦 Java-Account-System
+ ┣ 📜 Main.java              # Entry point & menu system
+ ┣ 📜 Account.java           # Sign up & login logic
+ ┣ 📜 DatabaseService.java   # File handling & validation
+ ┣ 📜 User.java              # User model (Serializable)
+ ┣ 📂 database.bin           # Stored user data (auto-generated)
+```
+
+---
+
+## ⚙️ How It Works
+
+### 📝 Sign Up
+- Input username  
+- Check if username exists  
+- Input secure password (hidden)  
+- Validate password length  
+- Confirm password  
+- Save to file (`database.bin`)  
+
+### 🔑 Sign In
+- Input username  
+- Validate existence  
+- Input password (hidden)  
+- Verify credentials  
+- Grant or deny access  
+
+---
+
+## 🔐 Security Practices Implemented
+| Practice | Description |
+|--------|------------|
+| Hidden Input | Uses `Console.readPassword()` |
+| char[] Passwords | Avoids immutable `String` storage |
+| Memory Clearing | Uses `Arrays.fill()` |
+| Attempt Limiting | Prevents brute-force attempts |
+| Input Validation | Ensures proper user input |
+
+---
+
+## 🧠 Concepts Demonstrated
+- Object-Oriented Programming (OOP)
+- File Handling & Serialization
+- Collections (`ArrayList`)
+- Java Streams API
+- Exception Handling
+- Secure Coding Basics
+- Modular Design Principles
+
+---
+
+## 🚀 Getting Started
+
+### ✅ Requirements
+- Java 8 or higher
+- Run in a **real terminal** (IMPORTANT for `Console`)
+
+### ▶️ Run the Program
+```bash
+javac Main.java
+java Main
+```
+
+---
+
+## ⚠️ Limitations
+- ❌ No password hashing (plain storage for learning)
+- ❌ Local file only (no real database)
+- ❌ No GUI (console-based only)
+
+---
+
+## 🔮 Future Improvements
+- 🔒 Add password hashing (e.g. BCrypt)
+- 🗄️ Replace file storage with a database (MySQL)
+- 🌐 Build a GUI or web version
+- 📧 Add email verification
+- 🔑 Implement session handling
+
+---
+
+## 📸 Screenshots
+> Add screenshots here to make your repo stand out 👀
 
 ---
 
 ## 👨‍💻 Author
-
 **Christian A. Gulfan**  
-Beginner programmer improving step by step 🚀
+Aspiring Software Developer 🚀  
+
+---
+
+## 🤝 Credits
+Special thanks to **Charles Tinoy** for:
+- Improving security practices  
+- Introducing file-based storage  
+- Helping structure cleaner, modular code  
+
+---
+
+## ⭐ Project Insight
+This project demonstrates my progression from:
+> Basic login systems ➜ Structured, secure, and persistent authentication systems
 
 ---
 
 ## 💬 Quote
-
-> One project at a time, one step closer. 🔐💻
+> “Secure code isn’t just about functionality — it’s about responsibility.” 🔐  
